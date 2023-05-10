@@ -19,17 +19,19 @@ Thanks to this analysis, traffic alerts can be designed for notifying drivers ab
 * Data URL: https://offenedaten-konstanz.de/dataset/fahrrad-dauerz-hlstellen/resource/c7da262a-7f4e-41a4-9a57-1d41222d77a4
 * Data Type: CSV
 
-Short description.
+The data set contains the measurement results of the bicycle counts of the municipal permanent counting stations in the city of Constance. With this data, it is possible to determine exactly when and how many cyclists have been on the road in these places. The measurement results are recorded every 15 minutes. The counting stations serve as an important data basis for urban cycling policy.
 
-### Datasource2: ZAEHLSTELLE_HEROSE_2020_STUENDLICH_WETTER
+### Datasource2: UNFALLATLAS_KONSTANZ_GESAMT_2020
 * Metadata URL: https://offenedaten-konstanz.de/dataset/stra-enverkehrsunf-lle/resource/ea89132c-c4f2-40e0-b276-37d2d955e7fa
 * Data URL: https://offenedaten-konstanz.de/dataset/stra-enverkehrsunf-lle/resource/fd1ac960-6b74-448e-bb82-23b35467a5f4
 * Data Type: CSV
 
+Road traffic accidents are accidents in which people have been killed or injured or property damage has occurred as a result of driving on public roads and squares. The accident atlas contains accidents with personal injury. Accidents in which only property damage occurred are not shown. The Accident Atlas contains data from road accident statistics based on reports from police departments.
+
 ## Work Packages
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
-1. ETL Operations on the datasets [#1]
+1. ETL Operations on the datasets [#1] 
 2. Merging two datasets [#2]
 3. Correlation analysis on bike counts and bike-involved traffic accidents [#3]
 4. Correlation analysis on weather, time, bike count and accidents [#4]
