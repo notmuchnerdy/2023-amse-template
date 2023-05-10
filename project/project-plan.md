@@ -19,7 +19,7 @@ Thanks to this analysis, traffic alerts can be designed for notifying drivers ab
 * Data URL: https://offenedaten-konstanz.de/dataset/fahrrad-dauerz-hlstellen/resource/c7da262a-7f4e-41a4-9a57-1d41222d77a4
 * Data Type: CSV
 
-The data set contains the measurement results of the bicycle counts of the municipal permanent counting stations in the city of Constance. With this data, it is possible to determine exactly when and how many cyclists have been on the road in these places. The measurement results are recorded every 15 minutes. The counting stations serve as an important data basis for urban cycling policy.
+The data set contains the measurement results of the bicycle counts of the municipal permanent counting stations in the city of Konstanz. With this data, it is possible to determine exactly when and how many cyclists have been on the road in these places. The measurement results are recorded every 15 minutes. The counting stations serve as an important data basis for urban cycling policy.
 
 ### Datasource2: UNFALLATLAS_KONSTANZ_GESAMT_2020
 * Metadata URL: https://offenedaten-konstanz.de/dataset/stra-enverkehrsunf-lle/resource/ea89132c-c4f2-40e0-b276-37d2d955e7fa
