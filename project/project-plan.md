@@ -29,8 +29,19 @@ Short description.
 ## Work Packages
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
+1. ETL Operations on the datasets [#1]
+2. Merging two datasets [#2]
+3. Correlation analysis on bike counts and bike-involved traffic accidents [#3]
+4. Correlation analysis on weather, time, bike count and accidents [#4]
+5. ML prediction model design which estimates possible bike count on traffic [#5]
+6. Discussion on the results [#6]
 
-1. Example Issue [#1][i1]
-2. ...
+8. Example Issue [#1][i1]
+9. ...
 
-[i1]: https://github.com/jvalue/2023-amse-template/issues/1
+[i1]: https://github.com/jvalue/2023-amse-template/issues/19
+[i2]: https://github.com/jvalue/2023-amse-template/issues/20
+[i3]: https://github.com/jvalue/2023-amse-template/issues/21
+[i4]: https://github.com/jvalue/2023-amse-template/issues/22
+[i5]: https://github.com/jvalue/2023-amse-template/issues/23
+[i6]: https://github.com/jvalue/2023-amse-template/issues/24
