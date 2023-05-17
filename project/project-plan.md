@@ -16,14 +16,14 @@ Thanks to this analysis, traffic alerts can be designed for notifying drivers ab
 
 ### Datasource1: ZAEHLSTELLE_HEROSE_2020_STUENDLICH_WETTER
 * Metadata URL: https://mobilithek.info/offers/-7161835583190029268
-* Data URL: https://offenedaten-konstanz.de/dataset/fahrrad-dauerz-hlstellen/resource/c7da262a-7f4e-41a4-9a57-1d41222d77a4
+* Data URL: https://offenedaten-konstanz.de/sites/default/files/Zaehlstelle_Herose_2020_stuendlich_Wetter_1.csv
 * Data Type: CSV
 
 The data set contains the measurement results of the bicycle counts of the municipal permanent counting stations in the city of Konstanz. With this data, it is possible to determine exactly when and how many cyclists have been on the road in these places. The measurement results are recorded every 15 minutes. The counting stations serve as an important data basis for urban cycling policy.
 
 ### Datasource2: UNFALLATLAS_KONSTANZ_GESAMT_2020
 * Metadata URL: https://offenedaten-konstanz.de/dataset/stra-enverkehrsunf-lle/resource/ea89132c-c4f2-40e0-b276-37d2d955e7fa
-* Data URL: https://offenedaten-konstanz.de/dataset/stra-enverkehrsunf-lle/resource/fd1ac960-6b74-448e-bb82-23b35467a5f4
+* Data URL: https://offenedaten-konstanz.de/sites/default/files/Unfallatlas_Konstanz_Gesamt_2020.csv
 * Data Type: CSV
 
 Road traffic accidents are accidents in which people have been killed or injured or property damage has occurred as a result of driving on public roads and squares. The accident atlas contains accidents with personal injury. Accidents in which only property damage occurred are not shown. The Accident Atlas contains data from road accident statistics based on reports from police departments.
