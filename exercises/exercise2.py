@@ -4,6 +4,8 @@ import requests
 import sqlite3
 import os
 
+#Excercise 2
+
 name_db="trainstops"
 
 os.chdir("..")
