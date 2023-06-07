@@ -14,11 +14,12 @@ dir="./data/{}.csv".format(name_db)
 
 url = "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"
 
-r=requests.get(url, allow_redirects=True)
+df = pd.read_csv(url,delimiter=";")
+#r=requests.get(url, allow_redirects=True)
 
-open(dir, 'wb').write(r.content)
+#open(dir, 'wb').write(r.content)
 
-df = pd.read_csv(dir,delimiter=";")
+#df = pd.read_csv(dir,delimiter=";")
 valid_verkehr_values=["FV","RV","nur DPN"]
 df=df[df["Verkehr"].isin(valid_verkehr_values)].drop(["Status"],axis=1)
 df=df.dropna()
