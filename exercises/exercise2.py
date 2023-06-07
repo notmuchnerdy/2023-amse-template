@@ -1,13 +1,11 @@
 import numpy as np
 import pandas as pd
 import sqlite3
-
+import os
 
 #Excercise 2
 
 name_db="trainstops"
-
-dir="./data/{}.csv".format(name_db)
 
 url = "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"
 
@@ -17,7 +15,8 @@ valid_verkehr_values=["FV","RV","nur DPN"]
 df=df[df["Verkehr"].isin(valid_verkehr_values)].drop(["Status"],axis=1)
 df=df.dropna()
 
-sql_file_dir="./exercises/{}.sqlite".format(name_db)
+
+sql_file_dir="./{}.sqlite".format(name_db)
 con=sqlite3.connect(sql_file_dir)
 cur=con.cursor()
 
