@@ -8,8 +8,9 @@ import os
 
 name_db="trainstops"
 
-os.chdir("..")
-dir=".//data/{}.csv".format(name_db)
+#os.chdir("..")
+
+dir="./data/{}.csv".format(name_db)
 
 url = "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"
 
