@@ -1,25 +1,18 @@
 import numpy as np
 import pandas as pd
-import requests
 import sqlite3
-import os
+
 
 #Excercise 2
 
 name_db="trainstops"
-
-#os.chdir("..")
 
 dir="./data/{}.csv".format(name_db)
 
 url = "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"
 
 df = pd.read_csv(url,delimiter=";")
-#r=requests.get(url, allow_redirects=True)
 
-#open(dir, 'wb').write(r.content)
-
-#df = pd.read_csv(dir,delimiter=";")
 valid_verkehr_values=["FV","RV","nur DPN"]
 df=df[df["Verkehr"].isin(valid_verkehr_values)].drop(["Status"],axis=1)
 df=df.dropna()
