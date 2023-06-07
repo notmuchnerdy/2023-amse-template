@@ -23,7 +23,7 @@ valid_verkehr_values=["FV","RV","nur DPN"]
 df=df[df["Verkehr"].isin(valid_verkehr_values)].drop(["Status"],axis=1)
 df=df.dropna()
 
-sql_file_dir=".//exercises/{}.sqlite".format(name_db)
+sql_file_dir="./exercises/{}.sqlite".format(name_db)
 con=sqlite3.connect(sql_file_dir)
 cur=con.cursor()
 
