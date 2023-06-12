@@ -42,17 +42,23 @@ cur=con.cursor()
 df1['Zeit'] = pd.to_datetime(df1['Zeit'])
 df1["Monat"]=pd.DatetimeIndex(df1['Zeit']).month
 df1["Wochentag"]=pd.DatetimeIndex(df1['Zeit']).dayofweek
+
+df1["Wochentag"]=df1["Wochentag"]+2
+df1["Wochentag"]=df1["Wochentag"].replace(8,1)
+
 df1["Stunde"]=pd.DatetimeIndex(df1['Zeit']).hour
 
-
+#df1["Temperatur-Interval"]
 symbol_wetter_list=list(df1["Symbol Wetter"].unique())
+df1["Key"] = df1["Monat"].astype(str) +"-"+df1["Wochentag"].astype(str)+"-"+df1["Stunde"].astype(str)
+#for index,sym in enumerate(df1["Symbol Wetter"]):
+#    df1 = df1.replace({'Symbol Wetter': {sym:symbol_wetter_list.index(sym)}})
 
-for index,sym in enumerate(df1["Symbol Wetter"]):
-    df1 = df1.replace({'Symbol Wetter': {sym:symbol_wetter_list.index(sym)}})
+#for index,temp in enumerate(df1["Temperatur-Interval"]):
 
 
 df2['Jahr-Monat'] = pd.to_datetime(df2['Jahr-Monat'],format='%Y-%m')
-
+df2["Key"]=df2["UMONAT"].astype(str) +"-"+ df2["UWOCHENTAG"].astype(str)+"-"+df2["USTUNDE"].astype(str)
 #Load to Local Server
 df1.to_sql(name=name_db1, con=con, if_exists="replace", index=False)
 df2.to_sql(name=name_db2, con=con, if_exists="replace", index=False)

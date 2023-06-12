@@ -25,4 +25,4 @@ jobs:
     # Run exercise feedback
     - name: Continuous Integration Test
       run: |
-        ./project/test.sh
+        ./project/tests.sh
