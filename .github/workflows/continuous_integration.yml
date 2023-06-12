@@ -23,10 +23,11 @@ jobs:
       with:
         python-version: 3.11
 
+    # Show GitHub Workspace
     - name: Print GITHUB_WORKSPACE
       run: echo ${GITHUB_WORKSPACE}
 
     # Run exercise feedback
     - name: Continuous Integration Test
-      run: bash ${GITHUB_WORKSPACE}/project/tests.sh
+      run: bash /home/runner/work/2023-amse-template/project/tests.sh
         
