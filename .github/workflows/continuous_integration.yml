@@ -29,5 +29,6 @@ jobs:
 
     # Run exercise feedback
     - name: Continuous Integration Test
-      run: ${PWD}/project/tests.sh
+      run: |
+        ./project/tests.sh
         
