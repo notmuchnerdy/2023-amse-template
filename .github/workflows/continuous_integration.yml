@@ -29,5 +29,5 @@ jobs:
 
     # Run exercise feedback
     - name: Continuous Integration Test
-      run: bash /home/runner/work/2023-amse-template/project/tests.sh
+      run: ${PWD}/project/tests.sh
         
