@@ -16,13 +16,17 @@ jobs:
       with:
         path: main
 
+
     # Install python
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
         python-version: 3.11
 
+    - name: Print GITHUB_WORKSPACE
+      run: echo ${GITHUB_WORKSPACE}
+
     # Run exercise feedback
     - name: Continuous Integration Test
-      run: bash ./project/tests.sh
+      run: bash ${GITHUB_WORKSPACE}/project/tests.sh
         

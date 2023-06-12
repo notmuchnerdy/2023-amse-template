@@ -6,7 +6,6 @@ with open(".\data\data_pull.py") as f:
     exec(f.read())
     f.close()
 
-print("Here")
 sqlite_files = [f for f in os.listdir('.') if f.endswith('.sqlite')]
 if len(sqlite_files)>=1:
     name_of_the_file=sqlite_files[0]
