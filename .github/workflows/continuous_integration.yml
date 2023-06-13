@@ -27,10 +27,9 @@ jobs:
     - name: Print GITHUB_WORKSPACE
       run: echo ${GITHUB_WORKSPACE}
 
-    # Run exercise feedback
+    # Run Continuous Integration
     - name: Continuous Integration Test
-      working-directory: /home/runner/work/2023-amse-template/2023-amse-template/project
-      run: | 
-       ./tests.sh
-      shell: bash
-        
+      run: |
+        cd main
+        ./project/tests.sh
+              
