@@ -30,6 +30,5 @@ jobs:
     # Run Continuous Integration
     - name: Continuous Integration Test
       run: |
-        cd main
         ./project/tests.sh
               
