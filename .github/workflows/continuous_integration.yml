@@ -29,7 +29,8 @@ jobs:
 
     # Run exercise feedback
     - name: Continuous Integration Test
+      working-directory: /home/runner/work/2023-amse-template/2023-amse-template/project
       run: | 
-       ./home/runner/work/2023-amse-template/2023-amse-template/project/tests.sh
+       ./tests.sh
       shell: bash
         
