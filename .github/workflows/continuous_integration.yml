@@ -29,8 +29,8 @@ jobs:
 
     # Run exercise feedback
     - name: Continuous Integration Test
-      working-directory: ${GITHUB_WORKSPACE}
-      run: |
-        ./project/tests.sh
+      working-directory: ${GITHUB_WORKSPACE}/project/
+      run: | 
+       ./tests.sh
       shell: bash
         
