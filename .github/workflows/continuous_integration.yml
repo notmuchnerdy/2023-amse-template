@@ -27,7 +27,13 @@ jobs:
     - name: Print GITHUB_WORKSPACE
       run: echo ${GITHUB_WORKSPACE}
 
-    # Run exercise feedback
-    - name: Continuous Integration Test
-      run: bash path/project/tests.sh
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run script file
+      run: |
+         chmod +x ./public/action/tests.sh
+         ./public/action/tests.sh
+      shell: bash
         
