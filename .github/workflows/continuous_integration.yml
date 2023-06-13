@@ -29,11 +29,6 @@ jobs:
 
     # Run exercise feedback
     - name: Continuous Integration Test
-      run: |
-    # make file runnable, might not be necessary
-    chmod +x "${GITHUB_WORKSPACE}/project/tests.sh"
-    # run script
-    "${GITHUB_WORKSPACE}/project/tests.sh"
-    # or
-    "${{ format('{0}/project/tests.sh', github.workspace) }}"
+      working-directory: ${{ github.workspace }}/project
+      run: bash ./tests.sh
         
