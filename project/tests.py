@@ -3,7 +3,7 @@ import pandas as pd
 
 
 def test_extract():
-    #os.chdir("..")
+    os.chdir("..")
     
     name_of_the_file="data.sqlite"
     try:
