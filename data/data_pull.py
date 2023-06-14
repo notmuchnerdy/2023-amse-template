@@ -8,9 +8,6 @@ import os
 
 ### Data Pipeline
 
-#Pulling the Datasets 
-
-
 name_db1="Zaehlstelle_Herose_2020_stuendlich_Wetter"
 name_db2="Unfallatlas_Konstanz_Gesamt_2020"
 
@@ -20,49 +17,58 @@ dir_2=".//data/{}.csv".format(name_db2)
 url1 = 'https://offenedaten-konstanz.de/sites/default/files/Zaehlstelle_Herose_2020_stuendlich_Wetter_1.csv'
 url2="https://offenedaten-konstanz.de/sites/default/files/Unfallatlas_Konstanz_Gesamt_2020.csv"
 
-r1=requests.get(url1, allow_redirects=True)
-r2 = requests.get(url2, allow_redirects=True)
-
-open(dir_1, 'wb').write(r1.content)
-open(dir_2, 'wb').write(r2.content)
-
-#Extract
-df1 = pd.read_csv(dir_1,delimiter=";")
-df2=pd.read_csv(dir_2,delimiter=";")
-
-#Connect Local Server
-#engine = create_engine('postgresql://postgres:1234@localhost:5432/postgres')
-
 sql_file_dir="./data/data.sqlite"
-con=sqlite3.connect(sql_file_dir)
 
-cur=con.cursor()
-#Transform Data
+def pull_dataset(url1,url2,dir_1,dir_2):
+    
 
-df1['Zeit'] = pd.to_datetime(df1['Zeit'])
-df1["Monat"]=pd.DatetimeIndex(df1['Zeit']).month
-df1["Wochentag"]=pd.DatetimeIndex(df1['Zeit']).dayofweek
+    r1=requests.get(url1, allow_redirects=True)
+    r2 = requests.get(url2, allow_redirects=True)
 
-df1["Wochentag"]=df1["Wochentag"]+2
-df1["Wochentag"]=df1["Wochentag"].replace(8,1)
-
-df1["Stunde"]=pd.DatetimeIndex(df1['Zeit']).hour
-
-#df1["Temperatur-Interval"]
-symbol_wetter_list=list(df1["Symbol Wetter"].unique())
-df1["Key"] = df1["Monat"].astype(str) +"-"+df1["Wochentag"].astype(str)+"-"+df1["Stunde"].astype(str)
-#for index,sym in enumerate(df1["Symbol Wetter"]):
-#    df1 = df1.replace({'Symbol Wetter': {sym:symbol_wetter_list.index(sym)}})
-
-#for index,temp in enumerate(df1["Temperatur-Interval"]):
+    open(dir_1, 'wb').write(r1.content)
+    open(dir_2, 'wb').write(r2.content)
 
 
-df2['Jahr-Monat'] = pd.to_datetime(df2['Jahr-Monat'],format='%Y-%m')
-df2["Key"]=df2["UMONAT"].astype(str) +"-"+ df2["UWOCHENTAG"].astype(str)+"-"+df2["USTUNDE"].astype(str)
-#Load to Local Server
-df1.to_sql(name=name_db1, con=con, if_exists="replace", index=False)
-df2.to_sql(name=name_db2, con=con, if_exists="replace", index=False)
+def extract(dir_1,dir_2):
 
-con.commit()
-con.close()
+    df1 = pd.read_csv(dir_1,delimiter=";")
+    df2=pd.read_csv(dir_2,delimiter=";")
+
+    return df1,df2
+
+
+def transform(df1,df2):
+    
+    df1['Zeit'] = pd.to_datetime(df1['Zeit'])
+    df1["Monat"]=pd.DatetimeIndex(df1['Zeit']).month
+    df1["Wochentag"]=pd.DatetimeIndex(df1['Zeit']).dayofweek
+
+    df1["Wochentag"]=df1["Wochentag"]+2
+    df1["Wochentag"]=df1["Wochentag"].replace(8,1)
+
+    df1["Stunde"]=pd.DatetimeIndex(df1['Zeit']).hour
+
+    #df1["Temperatur-Interval"]
+    symbol_wetter_list=list(df1["Symbol Wetter"].unique())
+    df1["Key"] = df1["Monat"].astype(str) +"-"+df1["Wochentag"].astype(str)+"-"+df1["Stunde"].astype(str)
+
+    df2['Jahr-Monat'] = pd.to_datetime(df2['Jahr-Monat'],format='%Y-%m')
+    df2["Key"]=df2["UMONAT"].astype(str) +"-"+ df2["UWOCHENTAG"].astype(str)+"-"+df2["USTUNDE"].astype(str)
+
+    return df1,df2
+
+def load(df1,df2,sql_file_dir,name_db1,name_db2):
+    con=sqlite3.connect(sql_file_dir)
+    cur=con.cursor()
+    df1.to_sql(name=name_db1, con=con, if_exists="replace", index=False)
+    df2.to_sql(name=name_db2, con=con, if_exists="replace", index=False)
+
+    con.commit()
+    con.close()
+
+if __name__ == '__main__':
+    pull_dataset(url1,url2,dir_1,dir_2)
+    df1,df2=extract(dir_1,dir_2)
+    df1,df2=transform(df1,df2)
+    load(df1,df2,sql_file_dir,name_db1,name_db2)
 

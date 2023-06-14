@@ -1,23 +1,32 @@
 import os
+import pandas as pd
 
-print(os.path.abspath(os.curdir))
-os.chdir("..")
-with open(".\data\data_pull.py") as f:
-    exec(f.read())
-    f.close()
+def test_extract():
+    #os.chdir("..")
+    print("Directory:",os.getcwd())
+    name_of_the_file="data.sqlite"
+    try:
+        file=open(".\data\{}".format(name_of_the_file))
+        print("Test passed, {} file could be found successfully!".format(name_of_the_file))
+        
 
-#
-sqlite_files = [f for f in os.listdir('.') if f.endswith('.sqlite')]
-if len(sqlite_files)>=1:
-    name_of_the_file=sqlite_files[0]
+    except IOError:
+        print("Test failed, {} file could not be found!".format(name_of_the_file))
 
-try:
-    file=open(".\data\{}".format(name_of_the_file))
-    print("Test passed, {} file could be found successfully!".format(name_of_the_file))
+def test_load_sqlfile():
+    try:
     
+        name_db1="Zaehlstelle_Herose_2020_stuendlich_Wetter"
+        name_db2="Unfallatlas_Konstanz_Gesamt_2020"
 
-except IOError:
-    print("Test failed, {} file could not be found!".format(name_of_the_file))
+        df1 = pd.read_sql_table(name_db1, 'sqlite:///data/data.sqlite')
+        df2 = pd.read_sql_table(name_db2, 'sqlite:///data/data.sqlite')
 
-finally:
-    file.close()
+        print("Test passed, SQL file could be loaded successfully!")
+
+    except:
+        print("SQL File could not read")
+
+if __name__ == '__main__':
+    test_extract()
+    test_load_sqlfile()
