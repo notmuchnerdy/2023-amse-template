@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check if files exist
-cd ..
+#cd ..
 cd data
 
 python data_pull.py
