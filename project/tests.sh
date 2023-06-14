@@ -2,6 +2,9 @@
 
 # Check if files exist
 #cd ..
+
+if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
 cd data
 
 python data_pull.py
