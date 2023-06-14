@@ -10,10 +10,10 @@ def test_extract():
         file=open(".\data\{}".format(name_of_the_file))
         print("Test passed, {} file could be found successfully!".format(name_of_the_file))
         
-
     except IOError:
         print("Test failed, {} file could not be found!".format(name_of_the_file))
-
+        raise IOError("You should be sure that your are in the correct directory")
+    
 def test_load_sqlfile():
     try:
     
@@ -27,6 +27,7 @@ def test_load_sqlfile():
 
     except:
         print("SQL File could not read")
+        raise NameError("You should be sure that your are in the correct directory")
 
 if __name__ == '__main__':
     test_extract()
