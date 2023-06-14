@@ -3,10 +3,11 @@ import pandas as pd
 
 
 def test_extract():
-    os.chdir("..")
-    print("Directory:",os.getcwd())
+    #os.chdir("..")
+    
     name_of_the_file="data.sqlite"
     try:
+        print("Directory:",os.getcwd())
         file=open(".\data\{}".format(name_of_the_file))
         print("Test passed, {} file could be found successfully!".format(name_of_the_file))
         
