@@ -13,7 +13,7 @@ name_db2="Unfallatlas_Konstanz_Gesamt_2020"
 url1 = 'https://offenedaten-konstanz.de/sites/default/files/Zaehlstelle_Herose_2020_stuendlich_Wetter_1.csv'
 url2="https://offenedaten-konstanz.de/sites/default/files/Unfallatlas_Konstanz_Gesamt_2020.csv"
 
-sql_file_dir="./data/data.sqlite"
+sql_file_dir="./data.sqlite"
 
 def extract(url1,url2):
 
@@ -43,7 +43,6 @@ def transform(df1,df2):
     return df1,df2
 
 def load(df1,df2,sql_file_dir,name_db1,name_db2):
-    print(os.getcwd())
     con=sqlite3.connect(sql_file_dir)
     cur=con.cursor()
     df1.to_sql(name=name_db1, con=con, if_exists="replace", index=False)
