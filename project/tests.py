@@ -8,7 +8,7 @@ def test_extract():
     name_of_the_file="data.sqlite"
     try:
         print("Directory:",os.getcwd())
-        file=open(".\{}".format(name_of_the_file))
+        file=open("{}".format(name_of_the_file))
         print("Test passed, {} file could be found successfully!".format(name_of_the_file))
         
     except IOError:
