@@ -43,6 +43,7 @@ def transform(df1,df2):
     return df1,df2
 
 def load(df1,df2,sql_file_dir,name_db1,name_db2):
+    print(os.getcwd())
     con=sqlite3.connect(sql_file_dir)
     cur=con.cursor()
     df1.to_sql(name=name_db1, con=con, if_exists="replace", index=False)
