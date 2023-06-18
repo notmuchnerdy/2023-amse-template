@@ -59,7 +59,7 @@ pipeline CarsPipelinePipeline {
 				"gas" oftype integer,
 				"electro" oftype integer,
 				"hybrid" oftype integer,
-				"PlugInHybrid" oftype integer,
+				"plugInHybrid" oftype integer,
 				"others" oftype integer];
 	}
     
