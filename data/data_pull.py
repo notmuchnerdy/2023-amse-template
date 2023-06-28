@@ -17,8 +17,8 @@ sql_file_dir="./data.sqlite"
 
 def extract(url1,url2):
 
-    df1=pd.read_csv(url1,delimiter=";")
-    df2=pd.read_csv(url2,delimiter=";")
+    df1=pd.read_csv(url1,delimiter=";",decimal=".")
+    df2=pd.read_csv(url2,delimiter=";",decimal=".")
 
     return df1,df2
 

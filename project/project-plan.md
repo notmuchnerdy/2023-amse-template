@@ -3,7 +3,7 @@
 ## Summary
 
 <!-- Describe your data science project in max. 5 sentences. -->
-This project analyzes the correlation between total bike counts in Konstanz in an hour and the count of bike-involved traffic accidents. Besides, how the weather parameters such as temperature, and precipitation affect bike counts on the traffic and bike-involved accidents will be analyzed. Moreover, an ML prediction model on possible bike counts will be obtained based on the temperature and weather parameters. 
+This project analyzes the correlation between total bike counts in Konstanz in an hour and the count of bike-involved traffic accidents. Besides, how the weather parameters such as temperature, and weather type affect bike counts on the traffic and bike-involved accidents will be analyzed. Moreover, an ML prediction model on possible bike counts will be obtained based on the temperature and weather parameters. 
 
 ## Rationale
 
