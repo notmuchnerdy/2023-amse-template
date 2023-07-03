@@ -15,21 +15,20 @@ with ZipFile('{}.zip'.format(file_name), 'r') as f:
     #extract in current directory
     f.extractall()
 
-df_header=list(pd.read_csv("data.csv",delimiter=";",nrows=0).columns)
+num_col=11
+df = pd.read_csv("data.csv",delimiter=";",usecols=range(num_col),decimal=",",header=None)
 
-df = pd.read_csv("data.csv",delimiter=";",on_bad_lines="skip",skiprows=1,decimal=",")
-
-#Transform
-total_column=len(df.columns)
-diff=total_column-len(df_header)
-
-for i in range(diff):
-    df_header.append("Nan_{}".format(i))
-
-df.columns=df_header
+header=list(df.iloc[0])
+df=df[1:]
+df.columns=header
+df=df.applymap(lambda x: str(x.replace(',','.')))
 
 selected_columns= ["Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)", "Batterietemperatur in °C", "Geraet aktiv"]
 df=df[selected_columns]
+
+df[["Hersteller","Geraet aktiv","Model"]] = df[["Hersteller","Geraet aktiv","Model"]].astype(str)
+df[["Geraet", "Monat"]] = df[["Geraet", "Monat"]].astype(int)
+df[["Temperatur in °C (DWD)", "Batterietemperatur in °C"]] = df[["Temperatur in °C (DWD)", "Batterietemperatur in °C"]].astype(float)
 
 df=df.rename(columns={"Temperatur in °C (DWD)": "Temperatur", "Batterietemperatur in °C": "Batterietemperatur"})
 
