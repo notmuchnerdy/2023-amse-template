@@ -15,6 +15,7 @@ with ZipFile('{}.zip'.format(file_name), 'r') as f:
     #extract in current directory
     f.extractall()
 
+#Transform
 selected_columns= ["Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)", "Batterietemperatur in °C", "Geraet aktiv"]
 
 df = pd.read_csv("data.csv",delimiter=";",usecols=range(11),decimal=",",header=None)
