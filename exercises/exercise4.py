@@ -35,11 +35,6 @@ df=df.rename(columns={"Temperatur in °C (DWD)": "Temperatur", "Batterietemperat
 df["Temperatur"]=(df["Temperatur"]*9/5)+32
 
 df["Batterietemperatur"]=(df["Batterietemperatur"]*9/5)+32
-df=df.rename(columns={"Temperatur in °C (DWD)": "Temperatur", "Batterietemperatur in °C": "Batterietemperatur"})
-
-df["Temperatur"]=(df["Temperatur"]*9/5)+32
-
-df["Batterietemperatur"]=(df["Batterietemperatur"]*9/5)+32
 
 #Load to SQL
 sql_file_dir="./{}.sqlite".format(file_name)
