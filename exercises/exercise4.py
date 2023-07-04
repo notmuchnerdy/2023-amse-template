@@ -15,27 +15,18 @@ with ZipFile('{}.zip'.format(file_name), 'r') as f:
     #extract in current directory
     f.extractall()
 
-num_col=11
-df = pd.read_csv("data.csv",delimiter=";",usecols=range(num_col),decimal=",",header=None)
-
-header=list(df.iloc[0])
-df=df[1:]
-df.columns=header
-df=df.applymap(lambda x: str(x.replace(',','.')))
-
 selected_columns= ["Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)", "Batterietemperatur in °C", "Geraet aktiv"]
-df=df[selected_columns]
 
-df[["Hersteller","Geraet aktiv","Model"]] = df[["Hersteller","Geraet aktiv","Model"]].astype(str)
-df[["Geraet", "Monat"]] = df[["Geraet", "Monat"]].astype(int)
-df[["Temperatur in °C (DWD)", "Batterietemperatur in °C"]] = df[["Temperatur in °C (DWD)", "Batterietemperatur in °C"]].astype(float)
+df = pd.read_csv("data.csv",delimiter=";",usecols=selected_columns,decimal=",",header=0).reset_index()
+sel_col=list(df.columns)[:7]
+df=df[sel_col]
+df.columns=selected_columns
 
 df=df.rename(columns={"Temperatur in °C (DWD)": "Temperatur", "Batterietemperatur in °C": "Batterietemperatur"})
 
 temp_in_celcius=(df["Temperatur"]*9/5)+32
 
 df.insert(5, 'TemperatureInCelsius', temp_in_celcius)
-
 
 #Load to SQL
 sql_file_dir="./{}.sqlite".format(file_name)
