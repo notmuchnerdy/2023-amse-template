@@ -24,9 +24,9 @@ df.columns=selected_columns
 
 df=df.rename(columns={"Temperatur in °C (DWD)": "Temperatur", "Batterietemperatur in °C": "Batterietemperatur"})
 
-temp_in_celcius=(df["Temperatur"]*9/5)+32
+df["Temperatur"]=(df["Temperatur"]*9/5)+32
 
-df.insert(5, 'TemperatureInCelsius', temp_in_celcius)
+df["Batterietemperatur"]=(df["Batterietemperatur"]*9/5)+32
 
 #Load to SQL
 sql_file_dir="./{}.sqlite".format(file_name)
