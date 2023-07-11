@@ -1,8 +1,11 @@
-constraint SelectStop oftype AllowlistConstraint {
-        allowlist:["2001"];
+constraint SelectStop oftype RangeConstraint {
+        lowerBound: 2001;
+        lowerBoundInclusive: true;
+        upperBound: 2001;
+        upperBoundInclusive: true;
     }
 
-valuetype Zone oftype text {
+valuetype Zone oftype integer {
         constraints: [
             SelectStop
         ];
