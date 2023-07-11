@@ -34,7 +34,7 @@ pipeline GTFSPipeline {
 
     block GTFSFilePicker oftype FilePicker {path: "/stops.txt";}
 
-    block GTFSTextFileInterpreter oftype TextFileInterpreter {encoding: "ascii";}
+    block GTFSTextFileInterpreter oftype TextFileInterpreter {encoding: "iso-8859-1";}
 
     block GTFSCSVInterpreter oftype CSVInterpreter {delimiter: ",";}
 
