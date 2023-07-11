@@ -1,0 +1,61 @@
+constraint SelectStop oftype RangeConstraint {
+        lowerBound: 2001;
+        lowerBoundInclusive: true;
+        upperBound: 2001;
+        upperBoundInclusive: true;
+    }
+
+    valuetype Zone oftype integer {
+        constraints: [
+            SelectStop
+        ];
+    }
+
+    valuetype StopLat_StopLon oftype decimal {
+        constraints: [
+            Range
+        ];
+    }
+
+    constraint Range oftype RangeConstraint {
+        lowerBound: -90;
+        lowerBoundInclusive: true;
+        upperBound: 90;
+        upperBoundInclusive: true;
+    }
+
+
+pipeline GTFSPipeline {
+
+    block ZipDownloader oftype HttpExtractor {url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";}
+
+    block ZipArchiveInterpreter oftype ArchiveInterpreter {archiveType: "zip";}
+    
+
+    block GTFSFilePicker oftype FilePicker {path: "/stops.txt";}
+
+    block GTFSTextFileInterpreter oftype TextFileInterpreter {encoding: "ascii";}
+
+    block GTFSCSVInterpreter oftype CSVInterpreter {delimiter: ",";}
+
+    block GTFSTableInterpreter oftype TableInterpreter {
+        header: false;
+        columns: [
+            "stop_id" oftype integer,
+            "stop_name" oftype text,
+            "stop_lat" oftype StopLat_StopLon,
+            "stop_lon" oftype StopLat_StopLon,
+            "zone_id" oftype Zone,
+        ];
+    }
+
+    block DatabaseLoader oftype SQLiteLoader { table: "stops"; file: "./gtfs.sqlite"; }
+
+    ZipDownloader
+        -> ZipArchiveInterpreter
+        -> GTFSFilePicker
+        -> GTFSTextFileInterpreter
+        -> GTFSCSVInterpreter
+        -> GTFSTableInterpreter
+        -> DatabaseLoader;
+}
