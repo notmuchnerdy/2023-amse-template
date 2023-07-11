@@ -1,29 +1,26 @@
-constraint SelectStop oftype RangeConstraint {
-        lowerBound: 2001;
-        lowerBoundInclusive: true;
-        upperBound: 2001;
-        upperBoundInclusive: true;
+constraint SelectStop oftype AllowlistConstraint {
+        allowlist:["2001"];
     }
 
-    valuetype Zone oftype integer {
+valuetype Zone oftype text {
         constraints: [
             SelectStop
         ];
     }
 
-    valuetype StopLat_StopLon oftype decimal {
-        constraints: [
-            Range
-        ];
-    }
 
-    constraint Range oftype RangeConstraint {
+constraint Range oftype RangeConstraint {
         lowerBound: -90;
         lowerBoundInclusive: true;
         upperBound: 90;
         upperBoundInclusive: true;
     }
 
+valuetype StopLat_StopLon oftype decimal {
+        constraints: [
+            Range
+        ];
+    }
 
 pipeline GTFSPipeline {
 
@@ -31,15 +28,15 @@ pipeline GTFSPipeline {
 
     block ZipArchiveInterpreter oftype ArchiveInterpreter {archiveType: "zip";}
     
-
     block GTFSFilePicker oftype FilePicker {path: "/stops.txt";}
 
-    block GTFSTextFileInterpreter oftype TextFileInterpreter {encoding: "iso-8859-1";}
+    block GTFSTextFileInterpreter oftype TextFileInterpreter {}
 
-    block GTFSCSVInterpreter oftype CSVInterpreter {delimiter: ",";}
+    block GTFSCSVInterpreter oftype CSVInterpreter {enclosing: '"';
+		enclosingEscape: '"';}
 
     block GTFSTableInterpreter oftype TableInterpreter {
-        header: false;
+        header: true;
         columns: [
             "stop_id" oftype integer,
             "stop_name" oftype text,
